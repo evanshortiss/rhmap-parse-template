@@ -1,0 +1,19 @@
+<!doctype>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Parse Server</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  </head>
+  <body>
+    Welcome to the Red Hat Mobile Parse Server Example
+
+    <script src="parse.js"></script>
+    <script>
+      Parse.initialize("local_app_id", "local_dev_key");
+      Parse.serverURL = 'http://localhost:8001/parse';
+    </script>
+  </body>
+</html>
