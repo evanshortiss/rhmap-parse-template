@@ -23,8 +23,17 @@
     <!-- The Parse SDK -->
     <script src="parse.js"></script>
 
+    <script src="qs.js"></script>
+
     <!-- Configure the Parse JS SDK once the application has loaded -->
     <script>
+      // Ensure we configure the SDK url
+      if (!querystring.parse(window.location.search).url) {
+        var port = window.location.port
+          , nav = window.location.protocol + '//' + window.location.host;
+
+        window.location = nav + window.location.pathname + '?url=' + nav;
+      }
       $fh.ready(function () {
         // Initialize the Parse SDK with our app id and javascript keys
         Parse.initialize("local_app_id", "local_dev_key");
