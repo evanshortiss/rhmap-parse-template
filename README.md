@@ -23,5 +23,8 @@ Once the install completes run:
 npm start
 ```
 
-Congratulations, you have a ParseServer running locally. This exact code can
-also be executed on Red Hat Mobile Application Platform.
+Congratulations, you have a ParseServer running locally. Navigate to
+http://localhost:8001/app/?url=http://localhost:8001 on your machine to try it
+out.
+
+This exact code can also be deployed on Red Hat Mobile Application Platform too.

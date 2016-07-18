@@ -6,14 +6,50 @@
     <meta charset="utf-8">
     <title>Parse Server</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <link rel="stylesheet" href="index.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
-    Welcome to the Red Hat Mobile Parse Server Example
+    <h2>
+      Red Hat Mobile Parse Server
+    </h2>
 
+    <button onclick="doPing()" type="button" name="button">
+      Ping Server
+    </button>
+
+    <!-- The Red Hat Mobile SDK -->
+    <script src="rhmap.js"></script>
+
+    <!-- The Parse SDK -->
     <script src="parse.js"></script>
+
+    <!-- Configure the Parse JS SDK once the application has loaded -->
     <script>
-      Parse.initialize("local_app_id", "local_dev_key");
-      Parse.serverURL = 'http://localhost:8001/parse';
+      $fh.ready(function () {
+        // Initialize the Parse SDK with our app id and javascript keys
+        Parse.initialize("local_app_id", "local_dev_key");
+
+        // Point the Parse SDK to the Parse server running on RHMAP
+        Parse.serverURL = $fh.getCloudURL() + '/parse';
+
+        // A function that will hit our ping endpoint
+        window.doPing = function () {
+          var start = Date.now();
+
+          function success (res) {
+            var str = 'ping responded in ' + (Date.now() - start) + 'ms';
+            alert(str);
+          }
+
+          function error (err) {
+            alert('ping call failed');
+            console.error(err);
+          }
+
+          Parse.Cloud.run('ping')
+            .then(success, error);
+        };
+      });
     </script>
   </body>
 </html>
